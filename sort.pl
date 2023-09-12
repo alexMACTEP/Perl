@@ -1,18 +1,10 @@
-#!/usr/bin/perl
-use strict;
-use warnings;
+##!/usr/bin/perl
+ use strict;
+ use warnings;
 
-my @nume = ( 2, 7, 9, 1, 8, 10, 91, 0, 56, 32, 936 );
-my $flag = 1;
+ my $realize = $ARGV[0];
+ my $add = $ARGV[1];
+ my $dolg = $ARGV[2];
 
-while ( $flag ) {
-$flag = 0;
-   for ( my $i = 0; $i < scalar @nume - 1; $i++ ) {
-      if ( $nume[$i] > $nume[$i + 1] ) {
-         ( $nume[$i], $nume[$i + 1] ) = ( $nume[$i + 1], $nume[$i] );
-         $flag = 1;
-      }
-   }
-}
-
-print "@nume \n";
+ my $kpd= ($realize-$add)*10;
+ print $kpd > 0? "snail will win through ". (int($dolg / $kpd) + 1). " sprint \n" : "Snail will lose \n";
