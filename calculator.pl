@@ -2,24 +2,30 @@
 use strict;
 use warnings;
 
-my $flag = 1;
-my $n1 = <STDIN>;
-$n1 =~ s/\D//g;
+my $n1 = vvod_chisla();
 
-while ( $flag ){
+while ( 1 ){
+   print "Введите действие(Для выходы введите 'exit'): ";
    my $znak = <STDIN>;
    chomp( $znak );
    last if ($znak eq "exit");
-   $znak =~ s/['\#','\@','\~','\!','0-9','a-z','\&',' ']//g;
-   my $n2 = <STDIN>;
-   last if ($n2 eq "exit");
-   $n2 =~ s/\D//g;
+   $znak =~ tr/-+*\///cd;
+   my $n2 = vvod_chisla();
    if (($znak =~ m/\//) && ($n2 == 0)){
-      print "na 0 ne delyt\n";
+      print "На ноль делить нельзя\n";
       last;
    } else {
- #     print "---------'$n1','$znak','$n2'------\n";
+ #    print "---------'$n1','$znak','$n2'------\n";
       $n1 = eval($n1.$znak.$n2);
       print "$n1 \n";
    }
 }
+
+sub vvod_chisla{
+   print "Введите число: ";
+   my $number = <STDIN>;
+   $number =~ tr/0-9.//cd;
+   chomp( $number );
+return $number;
+}
+1;
